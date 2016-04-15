@@ -1,5 +1,5 @@
-<?php 
-	include 'connection.php';	
+<?php
+	include 'connection.php';
 
 	session_start();
 	if(!isset($_SESSION['login']))
@@ -27,11 +27,11 @@
 					<h2>Add Person</h2>
 						<label>Name</label>
 						<input type="input" name="name" required="required" class="form-control"></input>
-					
-					
+
+
 						<label>Date</label>
 						<input type="date" name="date" required="required" class="form-control"></input>
-					
+
 						<div class="col-md-3" style="margin-left: -15px;margin-top: 10px;">
 							<input type="submit" value="Submit" name="submit" class="btn btn-lg btn-primary btn-block"></input>
 						</div>
@@ -47,16 +47,16 @@
 		                        $dob = $_POST['date'];
 		                        $dateofb = date("Y-m-d", strtotime($dob));
 
-		                        $query = "INSERT INTO 
-	                                        Person (id,name,birth_date)
+		                        $query = "INSERT INTO
+	                                        person (id,name,birth_date)
 	                                        VALUES ('','$name','$dateofb')";
 		            			if ($con->query($query) === TRUE) {
-			                        	echo "New Person Addded";	
-			                        } 
+			                        	echo "New Person Addded";
+			                        }
 		                        else {
 								    echo "Error: " . $query . "<br>" . $conn->error;
-								}            
-		                    }    
+								}
+		                    }
 						?>
 				</form>
 			</div>
@@ -70,19 +70,19 @@
 	                        <form method="post">
 									<input type="search" name="searchtext" required="required" class="form-control" placeholder="Search"></input>
 									<input type="submit" name="search" value="search" class="btn btn-primary" style="margin-top: 5px;"></input>
-								<?php 
+								<?php
 									if (isset($_POST['search'])) {
 										$ser = $_POST['searchtext'];
 										header( "Location: search.php?user=".$ser );
 									}
 								?>
 							</form>
-	                   	
+
 	                    </div>
 	                    <!-- /.input-group -->
 	                </div>
 			</div>
-		</div>	
+		</div>
 	</div>
 </body>
 </html>

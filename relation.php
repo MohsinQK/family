@@ -1,5 +1,5 @@
-<?php 
-	include 'connection.php';	
+<?php
+	include 'connection.php';
 
 	session_start();
 	if(!isset($_SESSION['login']))
@@ -7,10 +7,10 @@
 		die("please login ");
 		header('location:home.php');
 	}
-	$query = "SELECT * FROM Person";
+	$query = "SELECT * FROM person";
 	$result = mysqli_query($con,$query);
 
-	$child = "SELECT * FROM Person";
+	$child = "SELECT * FROM person";
 	$childresult = mysqli_query($con,$child);
 
 
@@ -32,48 +32,48 @@
 						<div class="col-md-6">
 							<label>Father</label>
 							<select class="form-control" name="father">
-								<?php 
-									while($childrow=mysqli_fetch_array($childresult,MYSQLI_ASSOC))	
+								<?php
+									while($childrow=mysqli_fetch_array($childresult,MYSQLI_ASSOC))
 								    {
 								?>
 									<option value="<?php echo $childrow['id']; ?>"><?php echo $childrow['name']; ?></option>
 								<?php } ?>
 							</select>
-						</div>	
+						</div>
 						<div class="col-md-6">
 							<label>Child</label>
 							<select class="form-control" name="child">
-								<?php 
-									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))	
+								<?php
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 								    {
 								?>
 									<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
 								<?php } ?>
 							</select>
-						</div>	
+						</div>
 						<div class="col-md-2" style="margin-left: 0px;margin-top: 10px;float: right;">
 							<input type="submit" value="submit" name="submit" class="btn btn-lg btn-primary btn-block"></input>
 						</div>
 
-						<?php 
+						<?php
 							if(isset($_GET['submit'])){
 	                        	$father = $_GET['father'];
 	                        	$child = $_GET['child'];
 
-	                        	$query = "INSERT INTO 
-	                                    Parent (parent_id,child_id)
+	                        	$query = "INSERT INTO
+	                                    parent (parent_id,child_id)
 	                                    VALUES ('$father','$child')";
                                 if ($con->query($query) === TRUE) {
-	                        		echo "New Relation Addded";	
-		                        } 
+	                        		echo "New Relation Addded";
+		                        }
 		                        else {
 								    echo "Error: " . $query . "<br>" . $con->error;
-								}      
+								}
 	                    	}
 						?>
 				</form>
 			</div>
-		</div>	
-	</div>	
+		</div>
+	</div>
 </body>
 </html>

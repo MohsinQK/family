@@ -1,7 +1,7 @@
-<?php 
-	include 'connection.php';	
+<?php
+	include 'connection.php';
 	$user = $_GET['user'];
-	$query = "SELECT * FROM Person WHERE name= '$user'";
+	$query = "SELECT * FROM person WHERE name= '$user'";
 	$result = mysqli_query($con,$query);
 ?>
 <!DOCTYPE html>
@@ -23,14 +23,14 @@
 			 	<?php
 			 	while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 				{
-				?> 
+				?>
 					<tr>
 						<td><?php echo $row['name']; ?></td>
 						<td><?php echo $row['birth_date']; ?></td>
 					</tr>
-				<?php } ?>	
+				<?php } ?>
 			</div>
 		</div>
-	</div>		
+	</div>
 </body>
 </html>

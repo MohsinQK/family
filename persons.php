@@ -1,7 +1,7 @@
-<?php 
-	include 'connection.php';	
+<?php
+	include 'connection.php';
 
-	$query = "SELECT * FROM Person";
+	$query = "SELECT * FROM person";
 	$result = mysqli_query($con,$query);
 ?>
 <!DOCTYPE html>
@@ -21,9 +21,9 @@
 						<th>Person Name</th>
 						<th>Date Of Berth</th>
 						<th colspan="2">Actions</th>
-					</tr>	
-					<?php 
-						while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)or die(mysqli_error($con)))	
+					</tr>
+					<?php
+						while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)or die(mysqli_error($con)))
 					    {
 					    	$personid=$row['id'];
 					?>
@@ -33,20 +33,20 @@
 							<td><?php echo $row['birth_date']; ?></td>
 							<td>
 								<a href="edit.php?person_id=<?php echo $personid ?>" class="btn btn-success">Update</a>
-								
+
 							</td>
 							<td>
 								<form method='post' action="persons.php">
 									<input type='hidden' name='itemid' value='<?php echo $row['id']; ?>'>
 									<input type='submit' name='dlteBtn' value='delete' class="btn btn-danger" onClick="window.location.reload()">
-									<?php 
+									<?php
 										if(isset($_POST['dlteBtn'])){
 											$id=$_POST['itemid'];
 
-											$delquery="DELETE FROM Person WHERE id= '$id' ";
+											$delquery="DELETE FROM person WHERE id= '$id' ";
 											if ($con->query($delquery) === TRUE) {
 													header("location:persons.php");
-					                        } 
+					                        }
 					                        else {
 											    echo "Error: " . $query . "<br>" . $conn->error;
 											}
@@ -54,10 +54,10 @@
 									?>
 								</form>
 							</td>
-						</tr>	
+						</tr>
 					<?php } ?>
-				</table>	
+				</table>
 			</div>
-		</div>		
+		</div>
 	</body>
-	</html>	
+	</html>
